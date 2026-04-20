@@ -1,0 +1,750 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: "OTRhapsody";
+  src: url("../fonts/OTRhapsody-Extrabold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+}
+@font-face {
+  font-family: "JetBrainsMonoNL";
+  src: url("../fonts/JetBrainsMonoNL-Bold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Instagram";
+  src: url("../fonts/Instagram\ Sans\ Bold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Instagram medium";
+  src: url("../fonts/Instagram\ Sans\ Medium.ttf.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "poppins", sans-serif;
+  overflow-x: hidden;
+  position: relative;
+}
+
+header {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+.logo {
+  height: 100px;
+  margin-right: 20px;
+}
+
+.transparent-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  backdrop-filter: blur(0px);
+  background-color: rgba(255, 255, 255, 0);
+  z-index: 1000;
+  transition: background-color 0.3s ease;
+}
+.header-scrolled {
+  backdrop-filter: blur(10px);
+  background-color: rgba(155, 155, 155, 0.8);
+}
+
+.transparent-header .logo {
+  width: 80px;
+  height: auto;
+}
+
+.transparent-header nav ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.transparent-header nav ul li {
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.transparent-header nav ul li:hover {
+  color: #007bff;
+}
+
+nav ul li a,
+nav ul li p {
+  text-decoration: none;
+  color: #fff;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
+nav ul li a {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  padding: 10px 15px;
+  border-radius: 50%;
+  transition: background-color 0.1s ease;
+}
+nav ul li a.active {
+  background-color: black;
+  border-radius: 50px;
+}
+nav ul li a:hover {
+  background-color: rgb(87, 87, 87);
+  border-radius: 50px;
+}
+
+.content {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+.content::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: url("../media/download.jpg") no-repeat center center/cover;
+  animation: zoomBackground 30s infinite, blurIn 1s ease-out forwards;
+  z-index: -1;
+}
+
+.name-split {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.large-text {
+  font-family: "OTRhapsody", sans-serif;
+  font-size: 10rem;
+  opacity: 0;
+  filter: blur(10px);
+  animation: compressText 4s forwards;
+  white-space: nowrap;
+}
+
+.left {
+  transform-origin: right center;
+  transform: scaleX(3);
+  margin-right: 10px;
+}
+
+.right {
+  transform-origin: left center;
+  transform: scaleX(3);
+  margin-left: 10px;
+  color: rgb(0, 0, 0);
+}
+
+.typing-effect {
+  font-size: 1.8rem;
+  font-weight: 300;
+  opacity: 0;
+  display: inline;
+  animation: fadeIn 0s forwards 5s;
+}
+
+#dynamic-text {
+  font-family: "JetBrainsMonoNL", sans-serif;
+  border-right: 2px solid black;
+  padding-right: 5px;
+}
+
+@keyframes compressText {
+  0% {
+    opacity: 0.5;
+    filter: blur(10px);
+  }
+  100% {
+    transform: scaleX(1);
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+.social-icons {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  gap: 15px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 2s ease;
+}
+.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+.icon {
+  color: white;
+  font-size: 24px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+@keyframes blurIn {
+  0% {
+    filter: blur(10px);
+  }
+  100% {
+    filter: blur(0px);
+  }
+}
+
+@keyframes zoomBackground {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.portfolio-text {
+  font-family: "Instagram", sans-serif;
+  font-size: 3rem;
+  margin-top: 30px;
+  opacity: 0;
+  animation: fadeInText 1s forwards 2s;
+  color: white;
+}
+
+@keyframes fadeInText {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.down-arrow {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 3rem;
+  color: white;
+  cursor: pointer;
+  opacity: 0;
+  animation: fadeInText 2s forwards 4s;
+  transition: transform 0.3s ease;
+}
+
+.down-arrow:hover {
+  transform: translateX(-50%) translateY(10px);
+}
+
+.about-section {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: left;
+  background-color: #f5f5f5;
+  padding: 200px;
+  padding-bottom: 100px;
+  text-align: left;
+  flex-direction: column;
+}
+.about-section h1 {
+  font-size: 4rem;
+  padding-bottom: 5px;
+  color: #202124;
+}
+.about-section h2 {
+  font-size: 3rem;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: #202124;
+}
+
+.about-section p {
+  font-family: "Instagram medium";
+  font-size: 1.5rem;
+  color: #202124;
+}
+.about-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  gap: 50px;
+}
+
+.text {
+  flex: 1;
+}
+
+.image {
+  flex-shrink: 0;
+}
+
+.profile-image {
+  width: 500px;
+  height: auto;
+  border-radius: 15%;
+  object-fit: cover;
+  cursor: pointer;
+  transform: rotate(5deg) scale(0.95);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+.profile-image:hover {
+  transform: rotate(0deg) scale(1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  cursor: url("../media/clinking-beer-mugs_1f37b.png"), auto;
+}
+#webweaver-logo:hover {
+  cursor: pointer;
+}
+#get-coffee {
+  transform: rotate(-5deg) scale(0.95);
+}
+#get-coffee:hover {
+  transform: rotate(0deg) scale(1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  cursor: url("../media/hot-beverage_2615.png"), auto;
+}
+
+@media (max-width: 768px) {
+  .about-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profile-image {
+    margin-top: 20px;
+  }
+}
+
+.wavy-section {
+  background-color: #060606;
+  width: 100vw;
+  min-height: 100vh;
+  position: relative;
+  color: #ffffff;
+}
+.wavy-section .about-content {
+  background-color: #060606;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 50px 20px;
+}
+.static-title {
+  font-size: 2.5rem;
+  font-family: "Instagram";
+  color: white;
+  padding-left: 45px;
+  padding-bottom: 8px;
+}
+
+.Design-ideation-poster {
+  font-family: "Instagram medium";
+  font-size: 1.4rem;
+  color: #b5b5b5;
+  flex: 1 1 auto;
+  max-height: 70vh;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  margin-left: 60px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.Design-ideation-poster p,
+.Design-ideation-poster h2 {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+.Design-ideation-poster h2,
+.Design-ideation-poster h1 {
+  font-family: "Instagram";
+  color: white;
+}
+.Design-ideation-poster h1 {
+  font-size: 3rem;
+}
+.Design-ideation-poster h2 {
+  font-size: 2.5rem;
+}
+.image-gallery {
+  position: relative;
+  max-width: 700px;
+  margin: auto;
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  height: 400px;
+  width: 500px;
+  padding-top: 50px;
+  padding-left: 200px;
+}
+
+.gallery-image {
+  position: relative;
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  transition: all 0.4s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  border-radius: 50px;
+}
+
+.gallery-image:nth-child(1) {
+  top: 140px;
+  left: 90px;
+  transform: rotate(-20deg);
+}
+
+.gallery-image:nth-child(2) {
+  top: -90px;
+  left: 290px;
+  transform: rotate(-20deg);
+}
+
+.gallery-image:nth-child(3) {
+  top: -60px;
+  left: -330px;
+  transform: rotate(20deg);
+}
+
+.gallery-image:nth-child(4) {
+  top: 150px;
+  left: -140px;
+  transform: rotate(15deg);
+}
+
+.main-image {
+  height: fit-content;
+  top: 0px;
+  left: -620px;
+  z-index: 1;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+}
+
+.gallery-image:hover {
+  transform: rotate(0deg) scale(1.2);
+  z-index: 2;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+#modalImage {
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: white;
+  font-size: 40px;
+  cursor: pointer;
+}
+#team-charter,
+#team-charter .about-content {
+  background-color: #dec19a;
+  color: #2d1005;
+}
+
+h2,
+h1 {
+  font-family: "Instagram";
+}
+h2 {
+  font-size: 2.5rem;
+}
+h1 {
+  font-size: 3rem;
+}
+p {
+  font-family: "Instagram medium";
+  margin-bottom: 10px;
+  margin-top: 10px;
+  font-size: 1.5rem;
+}
+.team-charter-content {
+  font-family: "Instagram medium";
+  font-size: 1.4rem;
+  flex: 1 1 auto;
+  max-height: 60vh;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  direction: rtl;
+  padding-left: 15px;
+}
+.team-charter-content > * {
+  direction: ltr;
+}
+.mvp-content {
+  font-family: "Instagram medium";
+  font-size: 1.4rem;
+  flex: 1 1 auto;
+  max-height: 120vh;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  direction: rtl;
+  padding-left: 20px;
+}
+.mvp-content > * {
+  direction: ltr;
+}
+#design-proposal,
+#design-proposal .about-content {
+  background-color: #301800;
+  color: #c1bab3;
+}
+
+.carousel {
+  position: relative;
+  width: 600px;
+  height: 400px;
+  margin: auto;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.carousel-images {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.carousel-images img {
+  width: 600px;
+  height: 400px;
+  object-fit: cover;
+  display: none;
+}
+
+.carousel-images img.active {
+  display: block;
+}
+
+button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.8);
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 50%;
+  font-size: 24px;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.prev {
+  left: 10px;
+}
+
+.next {
+  right: 10px;
+}
+
+.static-title {
+  text-align: center;
+  margin-top: 20px;
+}
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.dot {
+  height: 10px;
+  width: 10px;
+  margin: 0 5px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.active-dot {
+  background-color: #eb9018;
+}
+
+#mvp {
+  background: linear-gradient(to top, #540092, #de00e3);
+  color: #c1bab3;
+  min-height: 100vh;
+}
+#mvp .about-content {
+  background-color: transparent;
+  color: white;
+}
+.video-container {
+  display: inline-block;
+  perspective: 1000px;
+  border-radius: 50px;
+  padding: 20px;
+}
+
+.hover-video {
+  width: 450px;
+  height: auto;
+  transition: transform 0.5s ease, scale 0.5s ease;
+  pointer-events: none;
+  object-fit: cover;
+}
+
+.video-container:hover .hover-video {
+  transform: rotateY(10deg) scale(1.1);
+}
+
+.hover-video {
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+  user-select: none;
+}
+
+#vid1 {
+  transform: rotate(-5deg);
+}
+#vid2 {
+  transform: rotate(8deg);
+}
+#vid3 {
+  transform: rotate(-4deg);
+}
+#final {
+  background: black;
+  min-height: 100vh;
+}
+#final .about-content {
+  background-color: transparent;
+  color: white;
+}
+.final-content {
+  font-family: "Instagram medium";
+  font-size: 1.4rem;
+  flex: 1 1 auto;
+  max-height: 120vh;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  padding-left: 20px;
+}
+#portfolio {
+  background: #f4d7c7;
+  min-height: 100vh;
+}
+#portfolio .about-content {
+  background-color: transparent;
+  color: #5a3730;
+}
+
+#overall-reflection {
+  background: #f7fafb;
+  min-height: 100vh;
+}
+#overall-reflection .about-content {
+  background-color: transparent;
+  color: #0e1e25;
+}
+.overall-content {
+  font-family: "Instagram medium";
+  font-size: 1.4rem;
+  flex: 1 1 auto;
+  max-height: 120vh;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  padding-left: 20px;
+}
+#scrollToTopBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #52257a;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  z-index: 1000;
+  display: none;
+}
+
+#scrollToTopBtn:hover {
+  background-color: #52257a8e;
+}
+footer {
+  background-color: #f4f4f4;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
